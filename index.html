@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ali Hassan — Aconex & Document Control Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════
+   THEME TOKENS
+══════════════════════════════════════════ */
+:root {
+  --cyan:      #00c8f0;
+  --cyan-dim:  rgba(0,200,240,0.10);
+  --cyan-glow: rgba(0,200,240,0.22);
+  --amber:     #f59e0b;
+  --amber-dim: rgba(245,158,11,0.10);
+  --green:     #10b981;
+  --green-dim: rgba(16,185,129,0.10);
+  --red:       #f43f5e;
+  --sans:  'DM Sans', sans-serif;
+  --syne:  'Syne', sans-serif;
+  --mono:  'JetBrains Mono', monospace;
+  --r-sm: 8px; --r-md: 14px; --r-lg: 20px; --r-xl: 28px;
+  --transition: 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+[data-theme="dark"] {
+  --bg:      #070c12;
+  --bg2:     #0b1520;
+  --bg3:     #101d2b;
+  --bg4:     #152335;
+  --border:  rgba(255,255,255,0.06);
+  --border2: rgba(255,255,255,0.12);
+  --text:    #e8f1fa;
+  --text2:   #8ba5bf;
+  --text3:   #4d6880;
+  --shadow:  rgba(0,0,0,0.5);
+  --nav-bg:  rgba(7,12,18,0.88);
+  --card-bg: var(--bg2);
+  --input-bg:var(--bg3);
+}
+[data-theme="light"] {
+  --bg:      #f4f7fb;
+  --bg2:     #ffffff;
+  --bg3:     #eef2f8;
+  --bg4:     #e4eaf4;
+  --border:  rgba(0,0,0,0.07);
+  --border2: rgba(0,0,0,0.13);
+  --text:    #0f1c2e;
+  --text2:   #4a6480;
+  --text3:   #8ba5bf;
+  --shadow:  rgba(0,0,0,0.10);
+  --nav-bg:  rgba(244,247,251,0.90);
+  --card-bg: #ffffff;
+  --input-bg:#f4f7fb;
+  --cyan:    #0098c4;
+  --cyan-dim: rgba(0,152,196,0.09);
+  --cyan-glow:rgba(0,152,196,0.18);
+}
+
+/* ══════════════════════════════════════════
+   TYPOGRAPHY FIX
+══════════════════════════════════════════ */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+h1, h2, h3, .nav-logo, .section-title, .hero-h1, .tool-title, .cta-title {
+  font-stretch: normal;
+  -webkit-text-stroke: 0;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ══════════════════════════════════════════
+   BASE
+══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+  overflow-x: hidden;
+  transition: background var(--transition), color var(--transition);
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--cyan-dim); border-radius: 4px; }
+
+/* Noise texture */
+body::after {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+[data-theme="light"] body::after { opacity: 0.2; }
+
+/* ══════════════════════════════════════════
+   NAV
+══════════════════════════════════════════ */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5%; height: 64px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition), box-shadow .3s;
+}
+nav.scrolled { box-shadow: 0 4px 30px var(--shadow); }
+.nav-logo {
+  font-family: var(--syne); font-weight: 800; font-size: 1.1rem;
+  letter-spacing: -0.02em; color: var(--text);
+}
+.nav-logo span { color: var(--cyan); }
+.nav-links {
+  display: flex; gap: 2rem; align-items: center;
+}
+.nav-links a {
+  font-size:.85rem; font-weight:500; color:var(--text2);
+  transition: color .2s; letter-spacing:.02em; position:relative;
+}
+.nav-links a::after {
+  content:''; position:absolute; bottom:-4px; left:0; right:0; height:1px;
+  background:var(--cyan); transform:scaleX(0); transform-origin:left; transition:transform .25s;
+}
+.nav-links a:hover, .nav-links a.active { color:var(--cyan); }
+.nav-links a:hover::after, .nav-links a.active::after { transform:scaleX(1); }
+.nav-right { display:flex; align-items:center; gap:1rem; }
+.nav-cta {
+  background:var(--cyan); color:#fff !important;
+  padding:.42rem 1.1rem; border-radius:var(--r-sm);
+  font-weight:600 !important; font-size:.82rem !important;
+  transition:opacity .2s, transform .2s !important;
+}
+.nav-cta:hover { opacity:.85; transform:translateY(-1px); }
+.nav-cta::after { display:none !important; }
+
+/* Theme toggle */
+.theme-toggle {
+  width:36px; height:36px; border-radius:50%;
+  background:var(--bg3); border:1px solid var(--border2);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; font-size:.95rem;
+  transition: background .3s, border-color .3s, transform .2s;
+  flex-shrink:0;
+}
+.theme-toggle:hover { background:var(--cyan-dim); border-color:rgba(0,200,240,.25); transform:rotate(15deg); }
+.theme-toggle .icon-sun { display:none; }
+.theme-toggle .icon-moon { display:flex; }
+[data-theme="light"] .theme-toggle .icon-sun  { display:flex; }
+[data-theme="light"] .theme-toggle .icon-moon { display:none; }
+
+/* Hamburger */
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; }
+.hamburger span { width:22px; height:2px; background:var(--text2); border-radius:2px; transition:all .3s; }
+.mobile-menu {
+  display:none; position:fixed; top:64px; left:0; right:0;
+  background:var(--nav-bg); backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+  padding:1.5rem 5%; flex-direction:column; gap:.75rem; z-index:199;
+}
+.mobile-menu.open { display:flex; }
+.mobile-menu a { font-size:1rem; font-weight:500; color:var(--text2); padding:.5rem 0; border-bottom:1px solid var(--border); }
+
+/* ══════════════════════════════════════════
+   HERO
+══════════════════════════════════════════ */
+#home {
+  position:relative; min-height:100vh;
+  display:flex; align-items:center;
+  padding:100px 5% 60px; overflow:hidden;
+}
+.hero-bg { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+.hero-grid {
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(0,200,240,0.04) 1px, transparent 1px),
+    linear-gradient(90deg,rgba(0,200,240,0.04) 1px,transparent 1px);
+  background-size:52px 52px;
+  mask-image:radial-gradient(ellipse 80% 80% at 55% 50%, black 10%, transparent 75%);
+}
+[data-theme="light"] .hero-grid { opacity:.5; }
+.hero-orb1 {
+  position:absolute; width:650px; height:650px; border-radius:50%;
+  background:radial-gradient(ellipse, rgba(0,200,240,0.07) 0%, transparent 70%);
+  right:-80px; top:50%; transform:translateY(-50%);
+}
+.hero-orb2 {
+  position:absolute; width:350px; height:350px; border-radius:50%;
+  background:radial-gradient(ellipse, rgba(245,158,11,0.05) 0%, transparent 70%);
+  left:-40px; bottom:10%;
+}
+[data-theme="light"] .hero-orb1 { background:radial-gradient(ellipse, rgba(0,152,196,0.06) 0%, transparent 70%); }
+
+.hero-content { position:relative; z-index:1; max-width:660px; }
+
+.hero-badge {
+  display:inline-flex; align-items:center; gap:.5rem;
+  background:var(--cyan-dim); border:1px solid rgba(0,200,240,0.2);
+  color:var(--cyan); font-size:.72rem; font-family:var(--mono);
+  font-weight:600; letter-spacing:.09em; text-transform:uppercase;
+  padding:.32rem .85rem; border-radius:100px; margin-bottom:1.8rem;
+  animation:fadeUp .7s ease both;
+}
+.badge-pulse { width:6px; height:6px; background:var(--cyan); border-radius:50%; animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.75)} }
+
+.hero-h1 {
+  font-family:var(--syne); font-size:clamp(2.2rem,4.5vw,3.7rem);
+  font-weight:800; line-height:1.08; letter-spacing:-0.03em;
+  margin-bottom:1.25rem; animation:fadeUp .7s .1s ease both;
+}
+.hero-h1 .accent  { color:var(--cyan); }
+.hero-h1 .accent2 { color:var(--amber); }
+
+.hero-sub {
+  font-size:1.05rem; color:var(--text2); line-height:1.75; max-width:530px;
+  margin-bottom:1.1rem; animation:fadeUp .7s .15s ease both;
+}
+
+/* CREDIBILITY LINE — new */
+.hero-cred {
+  display:inline-flex; align-items:center; gap:.55rem;
+  font-family:var(--mono); font-size:.75rem; color:var(--text3);
+  margin-bottom:2.2rem; animation:fadeUp .7s .2s ease both;
+}
+.hero-cred svg { color:var(--green); flex-shrink:0; }
+.hero-cred strong { color:var(--text2); }
+
+.hero-actions { display:flex; gap:.85rem; flex-wrap:wrap; animation:fadeUp .7s .25s ease both; }
+.btn-primary {
+  display:inline-flex; align-items:center; gap:.5rem;
+  background:var(--cyan); color:#fff;
+  font-family:var(--syne); font-weight:700; font-size:.88rem;
+  padding:.72rem 1.6rem; border-radius:var(--r-sm);
+  transition:all .25s; cursor:pointer; border:none; letter-spacing:.01em;
+}
+.btn-primary:hover { opacity:.88; transform:translateY(-2px); box-shadow:0 8px 28px var(--cyan-glow); }
+.btn-secondary {
+  display:inline-flex; align-items:center; gap:.5rem;
+  background:transparent; color:var(--text);
+  font-family:var(--syne); font-weight:600; font-size:.88rem;
+  padding:.72rem 1.6rem; border-radius:var(--r-sm);
+  border:1px solid var(--border2); transition:all .25s; cursor:pointer;
+}
+.btn-secondary:hover { border-color:var(--cyan); color:var(--cyan); background:var(--cyan-dim); }
+.btn-ghost {
+  display:inline-flex; align-items:center; gap:.5rem;
+  background:transparent; color:var(--text2);
+  font-family:var(--syne); font-weight:600; font-size:.85rem;
+  padding:.65rem 1.4rem; border-radius:var(--r-sm);
+  border:1px solid var(--border); transition:all .25s; cursor:pointer;
+}
+.btn-ghost:hover { border-color:var(--amber); color:var(--amber); background:var(--amber-dim); }
+
+.hero-stats {
+  display:flex; gap:2.5rem; margin-top:3.2rem; padding-top:2.2rem;
+  border-top:1px solid var(--border); animation:fadeUp .7s .32s ease both;
+}
+.stat-num {
+  font-family:var(--syne); font-size:1.7rem; font-weight:800;
+  color:var(--cyan); letter-spacing:-0.03em;
+}
+.stat-lbl { font-size:.78rem; color:var(--text3); margin-top:.1rem; }
+
+/* Terminal */
+.hero-visual {
+  position:absolute; right:5%; top:50%; transform:translateY(-50%);
+  width:min(410px,44%); animation:fadeIn .9s .4s ease both;
+}
+.terminal {
+  background:var(--bg2); border:1px solid var(--border2); border-radius:var(--r-lg);
+  overflow:hidden; box-shadow:0 30px 80px var(--shadow), 0 0 0 1px rgba(0,200,240,.04);
+}
+.term-bar {
+  display:flex; align-items:center; gap:.45rem;
+  padding:.7rem 1rem; background:var(--bg3); border-bottom:1px solid var(--border);
+}
+.td { width:10px; height:10px; border-radius:50%; }
+.td.r{background:#ff5f57} .td.y{background:#ffbd2e} .td.g{background:#28c941}
+.term-title { font-family:var(--mono); font-size:.68rem; color:var(--text3); margin:0 auto; }
+.term-body { padding:1.1rem; font-family:var(--mono); font-size:.76rem; line-height:1.9; }
+.tc  { color:var(--text3); }
+.tk  { color:var(--cyan); }
+.tv  { color:var(--amber); }
+.ts  { color:var(--green); }
+.tok { color:var(--green); }
+.tcursor { display:inline-block; width:7px; height:13px; background:var(--cyan); animation:blink 1s infinite; vertical-align:middle; margin-left:2px; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+/* ══════════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════════ */
+@keyframes fadeUp  { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn  { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+.reveal { opacity:0; transform:translateY(26px); transition:opacity .65s ease, transform .65s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ══════════════════════════════════════════
+   TRUST STRIP
+══════════════════════════════════════════ */
+#trust {
+  position:relative; z-index:1;
+  padding:30px 5%; background:var(--bg2);
+  border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+}
+.trust-inner { display:flex; align-items:center; gap:1.75rem; flex-wrap:wrap; }
+.trust-lbl { font-family:var(--mono); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--text3); white-space:nowrap; }
+.trust-sep { width:1px; height:26px; background:var(--border2); flex-shrink:0; }
+.trust-tags { display:flex; gap:.6rem; flex-wrap:wrap; }
+.trust-tag {
+  font-family:var(--mono); font-size:.72rem; font-weight:600;
+  color:var(--text2); background:var(--bg3); border:1px solid var(--border);
+  padding:.28rem .75rem; border-radius:100px; white-space:nowrap;
+  transition: border-color .2s, color .2s;
+}
+.trust-tag:hover { border-color:var(--cyan); color:var(--cyan); }
+
+/* ══════════════════════════════════════════
+   SECTION COMMON
+══════════════════════════════════════════ */
+section { position:relative; padding:100px 5%; z-index:1; }
+.section-label {
+  font-family:var(--mono); font-size:.7rem; font-weight:600;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--cyan); margin-bottom:.7rem;
+}
+.section-title {
+  font-family:var(--syne); font-size:clamp(1.75rem,3.2vw,2.65rem);
+  font-weight:800; letter-spacing:-0.03em; line-height:1.13; margin-bottom:.9rem;
+}
+.section-sub { font-size:1rem; color:var(--text2); max-width:550px; line-height:1.75; margin-bottom:3.5rem; }
+.divider { width:44px; height:3px; background:linear-gradient(90deg,var(--cyan),transparent); border-radius:3px; margin:.9rem 0 1.4rem; }
+
+/* ══════════════════════════════════════════
+   WHY ME (new section)
+══════════════════════════════════════════ */
+#why {
+  background:var(--bg2);
+  border-top:1px solid var(--border);
+}
+.why-grid {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem;
+}
+.why-card {
+  background:var(--bg3); border:1px solid var(--border);
+  border-radius:var(--r-lg); padding:1.75rem 1.5rem;
+  transition:all .3s; position:relative; overflow:hidden;
+}
+.why-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,var(--cyan),transparent);
+  transform:scaleX(0); transform-origin:left; transition:transform .4s;
+}
+.why-card:hover { border-color:rgba(0,200,240,.2); transform:translateY(-4px); }
+.why-card:hover::before { transform:scaleX(1); }
+.why-icon {
+  width:42px; height:42px; background:var(--cyan-dim);
+  border:1px solid rgba(0,200,240,.15); border-radius:var(--r-sm);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.1rem; margin-bottom:1.1rem;
+}
+.why-title { font-family:var(--syne); font-weight:700; font-size:.97rem; margin-bottom:.45rem; }
+.why-desc { font-size:.87rem; color:var(--text2); line-height:1.65; }
+.why-tag {
+  display:inline-block; margin-top:.85rem;
+  font-family:var(--mono); font-size:.67rem; font-weight:600;
+  color:var(--green); background:var(--green-dim);
+  border:1px solid rgba(16,185,129,.15);
+  padding:.2rem .6rem; border-radius:100px;
+}
+
+/* ══════════════════════════════════════════
+   SERVICES
+══════════════════════════════════════════ */
+#services { background:var(--bg); }
+.services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.2rem; }
+.service-card {
+  background:var(--card-bg); border:1px solid var(--border);
+  border-radius:var(--r-lg); padding:1.9rem; transition:all .3s; position:relative; overflow:hidden;
+}
+.service-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,var(--cyan),transparent);
+  transform:scaleX(0); transform-origin:left; transition:transform .4s;
+}
+.service-card:hover { border-color:rgba(0,200,240,.2); transform:translateY(-4px); background:var(--bg3); }
+.service-card:hover::before { transform:scaleX(1); }
+.s-icon {
+  width:42px; height:42px; background:var(--cyan-dim); border-radius:var(--r-sm);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.1rem; margin-bottom:1.1rem; border:1px solid rgba(0,200,240,.12);
+}
+.s-name { font-family:var(--syne); font-size:1rem; font-weight:700; margin-bottom:.5rem; }
+.s-problem {
+  font-size:.78rem; color:var(--amber); font-family:var(--mono);
+  margin-bottom:.7rem; display:flex; align-items:center; gap:.4rem;
+}
+.s-desc { font-size:.88rem; color:var(--text2); line-height:1.65; margin-bottom:1.1rem; }
+/* RESULT */
+.s-result {
+  display:flex; align-items:flex-start; gap:.5rem;
+  font-size:.81rem; color:var(--green); font-weight:500;
+  background:var(--green-dim); border:1px solid rgba(16,185,129,.15);
+  border-radius:var(--r-sm); padding:.55rem .85rem; margin-bottom:.85rem;
+}
+/* FIT (new) */
+.s-fit {
+  display:flex; align-items:center; gap:.45rem;
+  font-family:var(--mono); font-size:.68rem; color:var(--text3);
+  border-top:1px solid var(--border); padding-top:.85rem; margin-top:.1rem;
+}
+.s-fit svg { color:var(--cyan); flex-shrink:0; }
+
+/* ══════════════════════════════════════════
+   TOOLS
+══════════════════════════════════════════ */
+#tools { background:var(--bg2); }
+.tools-stack { display:flex; flex-direction:column; gap:5rem; }
+.tool-block { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+.tool-block.rev { direction:rtl; }
+.tool-block.rev > * { direction:ltr; }
+.tool-tag {
+  display:inline-flex; align-items:center; gap:.45rem;
+  font-family:var(--mono); font-size:.7rem; font-weight:600;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--amber); background:var(--amber-dim);
+  border:1px solid rgba(245,158,11,.18);
+  padding:.28rem .75rem; border-radius:100px; margin-bottom:.9rem;
+}
+.tool-title {
+  font-family:var(--syne); font-size:clamp(1.45rem,2.4vw,1.9rem);
+  font-weight:800; letter-spacing:-0.02em; margin-bottom:.7rem;
+}
+.tool-desc { color:var(--text2); font-size:.92rem; line-height:1.75; margin-bottom:1.3rem; }
+.tool-features { display:flex; flex-direction:column; gap:.55rem; margin-bottom:1.4rem; }
+.tool-feat { display:flex; align-items:flex-start; gap:.7rem; font-size:.88rem; }
+.feat-dot {
+  width:18px; height:18px; background:var(--cyan-dim);
+  border:1px solid rgba(0,200,240,.22); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; margin-top:2px; font-size:.6rem; color:var(--cyan);
+}
+.tool-feat span { color:var(--text2); line-height:1.55; }
+
+/* IMPACT BOX (new) */
+.tool-impact {
+  background:var(--bg3); border:1px solid var(--border2);
+  border-radius:var(--r-md); padding:1rem 1.2rem;
+  margin-bottom:1.5rem;
+}
+.impact-label {
+  font-family:var(--mono); font-size:.67rem; font-weight:600;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--cyan);
+  margin-bottom:.65rem;
+}
+.impact-items { display:flex; flex-direction:column; gap:.4rem; }
+.impact-item {
+  display:flex; align-items:center; gap:.55rem;
+  font-size:.85rem; color:var(--text2);
+}
+.impact-item::before { content:'→'; color:var(--green); font-weight:700; font-family:var(--mono); font-size:.8rem; flex-shrink:0; }
+
+/* Tool visual mockup */
+.tool-visual {
+  background:var(--bg3); border:1px solid var(--border2);
+  border-radius:var(--r-xl); overflow:hidden; aspect-ratio:4/3;
+  position:relative; box-shadow:0 20px 60px var(--shadow);
+}
+.tv-inner { padding:1.1rem; height:100%; display:flex; flex-direction:column; gap:.55rem; }
+.tv-head {
+  display:flex; align-items:center; justify-content:space-between;
+  padding-bottom:.75rem; border-bottom:1px solid var(--border);
+}
+.tv-t { font-family:var(--mono); font-size:.68rem; color:var(--text3); }
+.tv-s {
+  font-family:var(--mono); font-size:.62rem; color:var(--green);
+  background:var(--green-dim); border:1px solid rgba(16,185,129,.18);
+  padding:.12rem .5rem; border-radius:100px;
+}
+.tv-row { display:grid; grid-template-columns:1fr 2fr; gap:.45rem; align-items:center; }
+.tv-lbl { font-family:var(--mono); font-size:.65rem; color:var(--text3); }
+.tv-val {
+  background:var(--bg4); border:1px solid var(--border);
+  border-radius:var(--r-sm); padding:.28rem .55rem;
+  font-family:var(--mono); font-size:.67rem; color:var(--cyan);
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.tv-prog { height:3px; background:var(--border); border-radius:3px; overflow:hidden; margin-top:auto; }
+.tv-fill {
+  height:100%; width:78%; border-radius:3px;
+  background:linear-gradient(90deg,var(--cyan),var(--green));
+  animation:prog 3s ease-in-out infinite alternate;
+}
+@keyframes prog { from{width:62%} to{width:90%} }
+.tv-kpis { display:grid; grid-template-columns:repeat(3,1fr); gap:.45rem; margin-top:.4rem; }
+.tv-kpi { background:var(--bg4); border:1px solid var(--border); border-radius:var(--r-sm); padding:.55rem; text-align:center; }
+.tv-kn { font-family:var(--syne); font-size:1.05rem; font-weight:800; color:var(--cyan); }
+.tv-kl { font-family:var(--mono); font-size:.58rem; color:var(--text3); margin-top:.1rem; }
+.tv-bars { display:flex; align-items:flex-end; gap:.3rem; height:55px; margin-top:auto; }
+.tv-bar {
+  flex:1; background:var(--cyan-dim); border-radius:3px 3px 0 0;
+  border:1px solid rgba(0,200,240,.18); border-bottom:none;
+}
+.tv-bar:nth-child(1){height:40%} .tv-bar:nth-child(2){height:62%}
+.tv-bar:nth-child(3){height:53%} .tv-bar:nth-child(4){height:80%}
+.tv-bar:nth-child(5){height:70%} .tv-bar:nth-child(6){height:92%}
+.tv-bar:nth-child(7){height:76%}
+
+/* ══════════════════════════════════════════
+   ABOUT
+══════════════════════════════════════════ */
+#about { background:var(--bg); display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+.about-text { font-size:.93rem; color:var(--text2); line-height:1.78; }
+.about-text p+p { margin-top:.95rem; }
+.about-text strong { color:var(--text); font-weight:600; }
+.about-vals { display:flex; flex-direction:column; gap:.7rem; margin-top:1.5rem; }
+.about-val {
+  display:flex; align-items:flex-start; gap:.85rem;
+  padding:.9rem 1.1rem; background:var(--bg2);
+  border:1px solid var(--border); border-radius:var(--r-md); transition:border-color .2s;
+}
+.about-val:hover { border-color:rgba(0,200,240,.2); }
+.val-icon {
+  width:30px; height:30px; background:var(--cyan-dim); border-radius:var(--r-sm);
+  display:flex; align-items:center; justify-content:center; font-size:.9rem; flex-shrink:0;
+}
+.val-text strong { display:block; font-size:.87rem; font-weight:600; margin-bottom:.12rem; }
+.val-text span { font-size:.82rem; color:var(--text2); }
+.about-card {
+  background:var(--card-bg); border:1px solid var(--border);
+  border-radius:var(--r-xl); padding:2rem;
+  display:flex; flex-direction:column; gap:1.4rem;
+  box-shadow:0 20px 50px var(--shadow);
+}
+.about-avatar {
+  width:60px; height:60px; border-radius:50%;
+  background:linear-gradient(135deg,var(--cyan-dim),var(--bg3));
+  border:2px solid rgba(0,200,240,.25);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--syne); font-size:1.3rem; font-weight:800; color:var(--cyan);
+}
+.about-name { font-family:var(--syne); font-size:1.1rem; font-weight:700; }
+.about-role { font-size:.8rem; color:var(--text2); margin-top:.15rem; }
+.about-metrics { display:grid; grid-template-columns:1fr 1fr; gap:.7rem; }
+.about-metric { background:var(--bg3); border:1px solid var(--border); border-radius:var(--r-md); padding:.9rem; }
+.m-num { font-family:var(--syne); font-size:1.35rem; font-weight:800; color:var(--cyan); }
+.m-lbl { font-size:.76rem; color:var(--text3); margin-top:.12rem; }
+.skills-wrap { display:flex; flex-wrap:wrap; gap:.45rem; }
+.skill-pill {
+  font-family:var(--mono); font-size:.7rem; font-weight:600;
+  padding:.28rem .72rem; border-radius:100px;
+  background:var(--bg3); border:1px solid var(--border2); color:var(--text2);
+  transition:all .2s;
+}
+.skill-pill:hover { border-color:var(--cyan); color:var(--cyan); }
+.skill-pill.hi { background:var(--cyan-dim); border-color:rgba(0,200,240,.22); color:var(--cyan); }
+
+/* ══════════════════════════════════════════
+   PORTFOLIO / CASE STUDIES
+══════════════════════════════════════════ */
+#portfolio { background:var(--bg2); }
+.portfolio-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.2rem; }
+.p-card {
+  background:var(--bg3); border:1px solid var(--border);
+  border-radius:var(--r-lg); overflow:hidden; transition:all .3s;
+}
+.p-card:hover { border-color:rgba(0,200,240,.2); transform:translateY(-4px); }
+.p-thumb {
+  aspect-ratio:16/10; background:var(--bg4); position:relative;
+  display:flex; align-items:center; justify-content:center; overflow:hidden;
+}
+.p-thumb-grid {
+  position:absolute; inset:0;
+  background-image:linear-gradient(rgba(0,200,240,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,240,.05) 1px,transparent 1px);
+  background-size:22px 22px;
+}
+.p-thumb-lbl {
+  position:relative; font-family:var(--mono); font-size:.68rem; color:var(--text3);
+  background:var(--bg3); border:1px solid var(--border2); padding:.35rem .8rem; border-radius:100px;
+}
+.p-thumb-icon { position:absolute; font-size:2.2rem; opacity:.12; }
+.p-body { padding:1.3rem; }
+.p-tags { display:flex; gap:.35rem; flex-wrap:wrap; margin-bottom:.8rem; }
+.ptag {
+  font-family:var(--mono); font-size:.63rem; font-weight:600;
+  padding:.18rem .55rem; border-radius:100px; border:1px solid var(--border); color:var(--text3); background:var(--bg4);
+}
+.ptag.c { border-color:rgba(0,200,240,.2); color:var(--cyan); background:var(--cyan-dim); }
+.ptag.a { border-color:rgba(245,158,11,.2); color:var(--amber); background:var(--amber-dim); }
+.ptag.g { border-color:rgba(16,185,129,.2); color:var(--green); background:var(--green-dim); }
+.p-name { font-family:var(--syne); font-size:.97rem; font-weight:700; margin-bottom:.45rem; }
+.p-desc { font-size:.84rem; color:var(--text2); line-height:1.6; }
+
+/* CASE STUDY cards (2 featured) */
+.case-cards {
+  display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin-bottom:1.2rem;
+}
+.case-card {
+  background:var(--card-bg); border:1px solid var(--border);
+  border-radius:var(--r-lg); overflow:hidden;
+  box-shadow:0 8px 30px var(--shadow); transition:all .3s;
+}
+.case-card:hover { border-color:rgba(0,200,240,.2); transform:translateY(-4px); }
+.case-head {
+  background:var(--bg3); padding:1rem 1.3rem;
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between;
+}
+.case-label {
+  font-family:var(--mono); font-size:.65rem; font-weight:600;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--cyan);
+}
+.case-icon { font-size:1.1rem; }
+.case-body { padding:1.3rem; }
+.case-name { font-family:var(--syne); font-weight:700; font-size:.97rem; margin-bottom:1rem; }
+.case-row { display:flex; gap:.5rem; margin-bottom:.6rem; }
+.case-key {
+  font-family:var(--mono); font-size:.68rem; font-weight:600;
+  color:var(--text3); white-space:nowrap; padding-top:.05rem; min-width:62px;
+}
+.case-val { font-size:.84rem; color:var(--text2); line-height:1.55; }
+.case-result-row {
+  margin-top:.85rem; padding:.7rem .9rem;
+  background:var(--green-dim); border:1px solid rgba(16,185,129,.15);
+  border-radius:var(--r-sm);
+}
+.case-result-label { font-family:var(--mono); font-size:.63rem; color:var(--green); font-weight:600; margin-bottom:.4rem; letter-spacing:.06em; text-transform:uppercase; }
+.case-result-item { display:flex; align-items:center; gap:.45rem; font-size:.82rem; color:var(--text2); margin-bottom:.2rem; }
+.case-result-item::before { content:'✓'; color:var(--green); font-weight:700; font-size:.8rem; }
+
+/* ══════════════════════════════════════════
+   TESTIMONIALS
+══════════════════════════════════════════ */
+#testimonials { background:var(--bg); }
+.testi-header {
+  display:flex; align-items:flex-end; justify-content:space-between;
+  flex-wrap:wrap; gap:1rem; margin-bottom:2.5rem;
+}
+.testi-note {
+  font-family:var(--mono); font-size:.7rem; color:var(--text3);
+  background:var(--bg2); border:1px solid var(--border);
+  padding:.3rem .75rem; border-radius:100px;
+}
+.testi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.2rem; }
+.testi-card {
+  background:var(--card-bg); border:1px solid var(--border);
+  border-radius:var(--r-lg); padding:1.65rem; transition:border-color .3s;
+}
+.testi-card:hover { border-color:rgba(0,200,240,.15); }
+.testi-quote { font-family:var(--syne); font-size:2.5rem; line-height:1; color:var(--cyan-dim); margin-bottom:.35rem; }
+.testi-text { font-size:.88rem; color:var(--text2); line-height:1.7; margin-bottom:1.4rem; font-style:italic; }
+.testi-author { display:flex; align-items:center; gap:.8rem; }
+.testi-av {
+  width:36px; height:36px; border-radius:50%;
+  background:linear-gradient(135deg,var(--cyan-dim),var(--bg3));
+  border:1px solid rgba(0,200,240,.2);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--syne); font-size:.75rem; font-weight:700; color:var(--cyan); flex-shrink:0;
+}
+.testi-name { font-weight:600; font-size:.87rem; }
+.testi-role { font-size:.75rem; color:var(--text3); }
+.testi-source {
+  display:inline-block; margin-top:.25rem;
+  font-family:var(--mono); font-size:.62rem; color:var(--text3);
+  background:var(--bg3); border:1px solid var(--border);
+  padding:.1rem .5rem; border-radius:100px;
+}
+
+/* ══════════════════════════════════════════
+   FAQ
+══════════════════════════════════════════ */
+#faq { background:var(--bg2); }
+.faq-wrap { max-width:700px; margin:0 auto; display:flex; flex-direction:column; gap:.7rem; }
+.faq-item { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--r-md); overflow:hidden; transition:border-color .2s; }
+.faq-item.open { border-color:rgba(0,200,240,.2); }
+.faq-q { display:flex; align-items:center; justify-content:space-between; padding:1.1rem 1.4rem; cursor:pointer; font-weight:600; font-size:.93rem; gap:1rem; user-select:none; }
+.faq-arr {
+  width:22px; height:22px; background:var(--bg3); border:1px solid var(--border);
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:.65rem; flex-shrink:0; transition:all .3s; color:var(--cyan);
+}
+.faq-item.open .faq-arr { transform:rotate(180deg); background:var(--cyan-dim); border-color:rgba(0,200,240,.3); }
+.faq-a { max-height:0; overflow:hidden; transition:max-height .4s ease, padding .3s; padding:0 1.4rem; font-size:.88rem; color:var(--text2); line-height:1.7; }
+.faq-item.open .faq-a { max-height:220px; padding:0 1.4rem 1.1rem; }
+
+/* ══════════════════════════════════════════
+   CTA BANNER
+══════════════════════════════════════════ */
+#cta-banner {
+  padding:80px 5%; background:var(--bg3);
+  border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  text-align:center; position:relative; overflow:hidden; z-index:1;
+}
+.cta-glow {
+  position:absolute; width:500px; height:280px; border-radius:50%;
+  background:radial-gradient(ellipse,rgba(0,200,240,.06) 0%,transparent 70%);
+  left:50%; top:50%; transform:translate(-50%,-50%); pointer-events:none;
+}
+.cta-title { font-family:var(--syne); font-size:clamp(1.55rem,3vw,2.3rem); font-weight:800; letter-spacing:-0.03em; margin-bottom:.7rem; }
+.cta-sub { color:var(--text2); font-size:.97rem; margin-bottom:2rem; max-width:460px; margin-left:auto; margin-right:auto; }
+.cta-actions { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+
+/* ══════════════════════════════════════════
+   CONTACT
+══════════════════════════════════════════ */
+#contact { background:var(--bg); display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; }
+.contact-hook {
+  background:var(--bg2); border:1px solid var(--border);
+  border-left:3px solid var(--cyan); border-radius:var(--r-md);
+  padding:1.2rem 1.4rem; margin-bottom:2rem;
+  font-size:.92rem; color:var(--text2); line-height:1.7;
+}
+.contact-hook strong { color:var(--cyan); font-weight:600; display:block; margin-bottom:.25rem; font-size:1rem; }
+.contact-methods { display:flex; flex-direction:column; gap:.7rem; }
+.contact-method {
+  display:flex; align-items:center; gap:.95rem;
+  padding:.95rem 1.2rem; background:var(--card-bg);
+  border:1px solid var(--border); border-radius:var(--r-md); transition:all .2s;
+}
+.contact-method:hover { border-color:rgba(0,200,240,.2); background:var(--bg3); }
+.cm-ic { width:34px; height:34px; background:var(--cyan-dim); border-radius:var(--r-sm); display:flex; align-items:center; justify-content:center; font-size:.9rem; flex-shrink:0; }
+.cm-lbl { font-size:.72rem; color:var(--text3); margin-bottom:.1rem; font-family:var(--mono); }
+.cm-val { font-weight:600; font-size:.88rem; }
+.contact-form { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--r-xl); padding:2.2rem; }
+.form-title { font-family:var(--syne); font-size:1.15rem; font-weight:700; margin-bottom:1.4rem; }
+.form-group { margin-bottom:1rem; }
+.form-label { display:block; font-size:.78rem; font-weight:500; color:var(--text2); margin-bottom:.38rem; font-family:var(--mono); letter-spacing:.04em; }
+.form-input, .form-select, .form-textarea {
+  width:100%; background:var(--input-bg); border:1px solid var(--border2);
+  border-radius:var(--r-sm); padding:.7rem .95rem;
+  color:var(--text); font-family:var(--sans); font-size:.88rem;
+  outline:none; transition:border-color .2s, box-shadow .2s; appearance:none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color:var(--cyan); box-shadow:0 0 0 3px var(--cyan-dim); }
+.form-textarea { resize:vertical; min-height:105px; line-height:1.6; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.form-submit {
+  width:100%; background:var(--cyan); color:#fff;
+  font-family:var(--syne); font-weight:700; font-size:.92rem;
+  padding:.82rem; border-radius:var(--r-sm); border:none;
+  cursor:pointer; transition:all .25s; margin-top:.4rem; letter-spacing:.01em;
+}
+.form-submit:hover { opacity:.88; transform:translateY(-1px); box-shadow:0 8px 28px var(--cyan-glow); }
+.form-note { text-align:center; font-size:.75rem; color:var(--text3); margin-top:.7rem; font-family:var(--mono); }
+
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+footer {
+  background:var(--bg2); border-top:1px solid var(--border);
+  padding:1.8rem 5%; display:flex; align-items:center;
+  justify-content:space-between; flex-wrap:wrap; gap:1rem; position:relative; z-index:1;
+}
+.f-logo { font-family:var(--syne); font-weight:800; font-size:.97rem; }
+.f-logo span { color:var(--cyan); }
+.f-copy { font-size:.76rem; color:var(--text3); font-family:var(--mono); }
+.f-links { display:flex; gap:1.4rem; }
+.f-links a { font-size:.8rem; color:var(--text3); transition:color .2s; }
+.f-links a:hover { color:var(--cyan); }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media(max-width:1024px) {
+  .hero-visual { display:none; }
+  .tool-block, .tool-block.rev { grid-template-columns:1fr; gap:2rem; direction:ltr; }
+  #about, #contact { grid-template-columns:1fr; gap:2.5rem; }
+  .case-cards { grid-template-columns:1fr; }
+}
+@media(max-width:768px) {
+  .nav-links { display:none; }
+  .hamburger { display:flex; }
+  section { padding:70px 5%; }
+  .hero-stats { gap:1.4rem; }
+  .stat-num { font-size:1.4rem; }
+  .form-row { grid-template-columns:1fr; }
+  .about-metrics { grid-template-columns:1fr 1fr; }
+  footer { flex-direction:column; text-align:center; }
+  .f-links { justify-content:center; }
+  .testi-header { flex-direction:column; align-items:flex-start; }
+}
+@media(max-width:480px) {
+  .hero-stats { flex-direction:column; gap:1rem; }
+  .hero-actions { flex-direction:column; }
+  .btn-primary, .btn-secondary, .btn-ghost { justify-content:center; }
+  .why-grid { grid-template-columns:1fr; }
+}
+
+/* ══════════════════════════════════════════
+   LANGUAGE SWITCHER
+══════════════════════════════════════════ */
+.lang-switch {
+  display: flex; align-items: center;
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: 100px; padding: 3px; gap: 2px; flex-shrink: 0;
+}
+.lang-btn {
+  font-family: var(--mono); font-size: .7rem; font-weight: 600;
+  padding: .22rem .65rem; border-radius: 100px;
+  cursor: pointer; border: none; background: transparent;
+  color: var(--text3); transition: all .2s; letter-spacing: .04em;
+}
+.lang-btn.active { background: var(--cyan); color: #fff; }
+[lang="ar"] body { direction: rtl; text-align: right; }
+[lang="ar"] .nav-links { flex-direction: row-reverse; }
+[lang="ar"] .hero-content { text-align: right; }
+[lang="ar"] .hero-actions { flex-direction: row-reverse; }
+[lang="ar"] .hero-stats { flex-direction: row-reverse; }
+[lang="ar"] .trust-inner { flex-direction: row-reverse; }
+[lang="ar"] .divider { background: linear-gradient(270deg, var(--cyan), transparent); }
+[lang="ar"] .tool-block { direction: rtl; }
+[lang="ar"] .tool-block > * { direction: rtl; }
+[lang="ar"] .tool-block.rev { direction: ltr; }
+[lang="ar"] .tool-block.rev > * { direction: ltr; }
+[lang="ar"] .nav-right { flex-direction: row-reverse; }
+[lang="ar"] footer { flex-direction: row-reverse; }
+[lang="ar"] .mobile-menu { text-align: right; }
+[lang="ar"] .section-label { text-align: right; }
+[lang="ar"] .contact-method { flex-direction: row-reverse; }
+[lang="ar"] .why-card { text-align: right; }
+[lang="ar"] .about-val { flex-direction: row-reverse; }
+[lang="ar"] .hero-cred { flex-direction: row-reverse; }
+[lang="ar"] .impact-item::before { content: 'arrow'; color: var(--green); }
+[lang="ar"] .testi-header { flex-direction: row-reverse; }
+
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">Ali<span>.</span>Hassan</a>
+  <ul class="nav-links">
+    <li><a href="#why">Why Me</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#testimonials">Feedback</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-switch">
+      <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+      <button class="lang-btn" onclick="setLang('ar')" id="btn-ar">عر</button>
+    </div>
+    <div class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+      <span class="icon-moon">🌙</span>
+      <span class="icon-sun">☀️</span>
+    </div>
+    <a href="#contact" class="nav-cta">Book Free Consultation →</a>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#why" onclick="closeMenu()">Why Me</a>
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#tools" onclick="closeMenu()">Tools</a>
+  <a href="#portfolio" onclick="closeMenu()">Portfolio</a>
+  <a href="#testimonials" onclick="closeMenu()">Feedback</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+  <a href="#contact" onclick="closeMenu()" style="color:#fff;background:var(--cyan);padding:.6rem 1rem;border-radius:8px;text-align:center;font-weight:700;">Book Free Consultation →</a>
+</div>
+
+<!-- ══ HERO ══ -->
+<section id="home">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-orb1"></div>
+    <div class="hero-orb2"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <div class="badge-pulse"></div>
+      Available for Freelance — KSA & Remote
+    </div>
+
+    <h1 class="hero-h1">
+      Fix Your Aconex Setup,<br>
+      Eliminate Document<br>
+      Errors &amp; Speed Up<br>
+      Reviews by <span class="accent">3×</span><span class="accent2">.</span>
+    </h1>
+
+    <p class="hero-sub">
+      I design, configure, and automate Aconex environments for engineering and construction projects — with custom-built tools that turn document control from a bottleneck into a competitive advantage.
+    </p>
+
+    <!-- CREDIBILITY TRIGGER -->
+    <div class="hero-cred">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 1L8.8 4.7L13 5.3L10 8.2L10.7 12.4L7 10.4L3.3 12.4L4 8.2L1 5.3L5.2 4.7L7 1Z" fill="currentColor"/>
+      </svg>
+      <span>Trusted on client-side projects managing <strong>50,000+ documents</strong> across multiple active developments in KSA</span>
+    </div>
+
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">📅 Book Free Consultation</a>
+      <a href="#contact" class="btn-secondary">🔍 Request Aconex Audit</a>
+      <a href="#tools" class="btn-ghost">🔧 View Tools</a>
+    </div>
+
+    <div class="hero-stats">
+      <div><div class="stat-num">6+</div><div class="stat-lbl">Years in DC</div></div>
+      <div><div class="stat-num">50k+</div><div class="stat-lbl">Docs Managed</div></div>
+      <div><div class="stat-num">8</div><div class="stat-lbl">Active Projects</div></div>
+      <div><div class="stat-num">3×</div><div class="stat-lbl">Faster Reviews</div></div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="terminal">
+      <div class="term-bar">
+        <div class="td r"></div><div class="td y"></div><div class="td g"></div>
+        <span class="term-title">aconex_metadata_creator.py</span>
+      </div>
+      <div class="term-body">
+        <div class="tc"># Processing batch — 100 documents</div>
+        <div><span class="tk">doc_number </span>= <span class="ts">"RFAD-CIV-DWG-0042"</span></div>
+        <div><span class="tk">discipline </span>= <span class="ts">"Civil"</span></div>
+        <div><span class="tk">doc_type   </span>= <span class="ts">"Drawing"</span></div>
+        <div><span class="tk">revision   </span>= <span class="ts">"B01"</span></div>
+        <div><span class="tk">status     </span>= <span class="ts">"IFR"</span></div>
+        <div>&nbsp;</div>
+        <div class="tc"># Auto-generating filename...</div>
+        <div><span class="tok">✓</span> <span class="ts">"RFAD-CIV-DWG-0042-B01.pdf"</span></div>
+        <div><span class="tok">✓</span> metadata validated</div>
+        <div><span class="tok">✓</span> upload package ready</div>
+        <div>&nbsp;</div>
+        <div><span class="tc">█ 78 / 100 processed</span><span class="tcursor"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TRUST STRIP ══ -->
+<div id="trust">
+  <div class="trust-inner">
+    <span class="trust-lbl">Expertise In</span>
+    <div class="trust-sep"></div>
+    <div class="trust-tags">
+      <span class="trust-tag">Aconex Admin</span>
+      <span class="trust-tag">ISO 19650</span>
+      <span class="trust-tag">Python Automation</span>
+      <span class="trust-tag">Excel / VBA</span>
+      <span class="trust-tag">PDF Workflows</span>
+      <span class="trust-tag">Document Lifecycle</span>
+      <span class="trust-tag">Transmittals</span>
+      <span class="trust-tag">MDR Setup</span>
+      <span class="trust-tag">KPI Dashboards</span>
+      <span class="trust-tag">Client-Side DC</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ WHY ME ══ -->
+<section id="why">
+  <div class="section-label">// Why Work With Me</div>
+  <h2 class="section-title">What Makes This<br>Different</h2>
+  <div class="divider"></div>
+  <p class="section-sub">Most document controllers manage files. I build the systems, tools, and workflows that make document control invisible to everyone — except when they need it most.</p>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-icon">🎯</div>
+      <div class="why-title">Client-Side Experience</div>
+      <div class="why-desc">I work from the owner/client position — which means I understand governance, audit risk, and contractual document obligations that contractors rarely consider.</div>
+      <span class="why-tag">Rare Perspective</span>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🔧</div>
+      <div class="why-title">I Build My Own Tools</div>
+      <div class="why-desc">I don't just use Aconex — I've built Python and Excel tools on top of it. When something's missing or slow, I write the solution instead of waiting for a vendor update.</div>
+      <span class="why-tag">Tool Builder</span>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">⚡</div>
+      <div class="why-title">Days, Not Months</div>
+      <div class="why-desc">No lengthy onboarding, no agency overhead. I scope the problem, propose a solution, and deliver. Most setups are live within 1–2 weeks.</div>
+      <span class="why-tag">Fast Delivery</span>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🏗️</div>
+      <div class="why-title">Real Project Pressure</div>
+      <div class="why-desc">I've managed document control under live construction deadlines, multi-stakeholder reviews, and audit-ready environments. I know what "urgent" actually means on site.</div>
+      <span class="why-tag">Battle-Tested</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICES ══ -->
+<section id="services">
+  <div class="section-label">// Services</div>
+  <h2 class="section-title">Targeted Solutions for<br>Real DC Bottlenecks</h2>
+  <div class="divider"></div>
+  <p class="section-sub">Not generic consulting — hands-on work that fixes specific Aconex and document control problems with clear, measurable outcomes.</p>
+
+  <div class="services-grid">
+
+    <div class="service-card reveal">
+      <div class="s-icon">⚙️</div>
+      <div class="s-name">Aconex Setup & Configuration</div>
+      <div class="s-problem">⚠ Aconex running out-of-the-box with no governance</div>
+      <p class="s-desc">Complete Aconex environment design — numbering schemas, document registers, access control, mail types, and workflow routing — tuned to your project scope and stakeholder matrix.</p>
+      <div class="s-result">✓ A governed Aconex instance ready for day-one operations</div>
+      <div class="s-fit">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M4 6l1.5 1.5L8 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Best for: New projects or existing setups with no naming convention · Typical: 1–2 weeks
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="s-icon">🔁</div>
+      <div class="s-name">Workflow Design & Optimization</div>
+      <div class="s-problem">⚠ Review cycles taking 3 weeks when they should take 3 days</div>
+      <p class="s-desc">I map your current review process, identify the real bottlenecks, and redesign Aconex workflows to enforce deadlines, auto-escalate overdue items, and give stakeholders the right access at the right time.</p>
+      <div class="s-result">✓ Review cycles cut by up to 60% through workflow automation</div>
+      <div class="s-fit">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M4 6l1.5 1.5L8 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Best for: Projects with 3+ reviewers or recurring approval delays · Typical: 5–10 days
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="s-icon">🏷️</div>
+      <div class="s-name">Metadata & Document Automation</div>
+      <div class="s-problem">⚠ Team manually filling metadata for hundreds of documents</div>
+      <p class="s-desc">Python and Excel tools that auto-generate compliant filenames, validate metadata against your numbering schema, and produce upload-ready packages — eliminating manual errors entirely.</p>
+      <div class="s-result">✓ Hours of manual work reduced to minutes per batch</div>
+      <div class="s-fit">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M4 6l1.5 1.5L8 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Best for: Projects uploading 50+ documents/month · Typical: 3–5 days deployment
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="s-icon">📊</div>
+      <div class="s-name">Dashboard & Reporting</div>
+      <div class="s-problem">⚠ Management has no real-time visibility on document progress</div>
+      <p class="s-desc">I extract data from Aconex and build interactive KPI dashboards showing submission rates, overdue reviews, approval ratios, and project health — decision-ready, not data-dump.</p>
+      <div class="s-result">✓ Real-time project intelligence from data you already have</div>
+      <div class="s-fit">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M4 6l1.5 1.5L8 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Best for: Projects with 10,000+ documents or monthly reporting needs · Typical: 1 week
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="s-icon">📁</div>
+      <div class="s-name">Document Control System Setup</div>
+      <div class="s-problem">⚠ No DMS structure, inconsistent naming, no audit trail</div>
+      <p class="s-desc">Full DC system from scratch — MDR structure, filing conventions, transmittal templates, approval matrices, and team onboarding — aligned with ISO 19650 and your contract requirements.</p>
+      <div class="s-result">✓ Audit-ready document control system from day one</div>
+      <div class="s-fit">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M4 6l1.5 1.5L8 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Best for: Projects starting fresh or inheriting a disorganized system · Typical: 1–3 weeks
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="s-icon">🚀</div>
+      <div class="s-name">Freelance Document Controller</div>
+      <div class="s-problem">⚠ Need an experienced DC for a critical project phase</div>
+      <p class="s-desc">Available as an embedded Document Controller — managing transmittals, correspondence, Aconex operations, and coordination with contractors, consultants, and site teams on your behalf.</p>
+      <div class="s-result">✓ Senior-level DC expertise without a full-time hire</div>
+      <div class="s-fit">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M4 6l1.5 1.5L8 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Best for: Construction / engineering firms in KSA · Retainer or fixed-scope
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ TOOLS ══ -->
+<section id="tools">
+  <div class="section-label">// Built Tools</div>
+  <h2 class="section-title">Tools I Built Because<br>Nothing Else Existed</h2>
+  <div class="divider"></div>
+  <p class="section-sub">Every tool was born from a real problem on a real project. Production-deployed, not prototypes.</p>
+
+  <div class="tools-stack">
+
+    <!-- TOOL 1 -->
+    <div class="tool-block reveal">
+      <div>
+        <div class="tool-tag">🔧 Tool 01</div>
+        <h3 class="tool-title">Aconex Metadata Creator</h3>
+        <p class="tool-desc">When you're uploading hundreds of documents and each one needs a precisely structured filename and validated metadata fields, the manual process doesn't just slow you down — it creates errors that come back as rejected transmittals and rework.</p>
+        <p class="tool-desc">This tool reads your document list, validates every field against your project's numbering schema, auto-generates compliant filenames, and produces an upload-ready package in minutes.</p>
+        <ul class="tool-features">
+          <li class="tool-feat"><div class="feat-dot">✓</div><span>Auto-generates Aconex-compliant filenames from document number components</span></li>
+          <li class="tool-feat"><div class="feat-dot">✓</div><span>Real-time validation — catches mismatches before upload, not after rejection</span></li>
+          <li class="tool-feat"><div class="feat-dot">✓</div><span>Bulk processing: 1 document or 1,000 at the same speed</span></li>
+          <li class="tool-feat"><div class="feat-dot">✓</div><span>Project-configurable schemas — adapts to your exact naming convention</span></li>
+          <li class="tool-feat"><div class="feat-dot">✓</div><span>Export to Aconex-ready upload format (CSV / Excel)</span></li>
+        </ul>
+        <div class="tool-impact">
+          <div class="impact-label">Business Impact</div>
+          <div class="impact-items">
+            <div class="impact-item">Reduced manual metadata processing time by up to 90%</div>
+            <div class="impact-item">Eliminated filename errors and rejected Aconex submissions</div>
+            <div class="impact-item">Deployed live across 8 active REFAD projects</div>
+          </div>
+        </div>
+        <a href="#contact" class="btn-primary">Request a Demo →</a>
+      </div>
+      <div class="tool-visual">
+        <div class="tv-inner">
+          <div class="tv-head">
+            <span class="tv-t">metadata_creator — RFAD-COMPOUND-P3</span>
+            <span class="tv-s">● LIVE</span>
+          </div>
+          <div class="tv-row"><span class="tv-lbl">PROJECT</span><span class="tv-val">RFAD-COMPOUND-P3</span></div>
+          <div class="tv-row"><span class="tv-lbl">DOC NO.</span><span class="tv-val">RFAD-STR-DWG-0112</span></div>
+          <div class="tv-row"><span class="tv-lbl">DISCIPLINE</span><span class="tv-val">Structural</span></div>
+          <div class="tv-row"><span class="tv-lbl">REVISION</span><span class="tv-val">C01 — IFC</span></div>
+          <div class="tv-row"><span class="tv-lbl">FILENAME</span><span class="tv-val">RFAD-STR-DWG-0112-C01.pdf</span></div>
+          <div class="tv-row"><span class="tv-lbl">STATUS</span><span class="tv-val" style="color:var(--green)">✓ VALIDATED</span></div>
+          <div class="tv-prog"><div class="tv-fill"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOOL 2 -->
+    <div class="tool-block rev reveal">
+      <div>
+        <div class="tool-tag">📊 Tool 02</div>
+        <h3 class="tool-title">Aconex Dashboard Creator</h3>
+        <p class="tool-desc">Your Aconex system holds a goldmine of project data — submission counts, review durations, overdue items, approval rates. But that data is buried in rigid exports that nobody reads.</p>
+        <p class="tool-desc">This dashboard transforms your Aconex export into a fully interactive KPI view — built in Excel — with charts, filters, and drill-down views that project managers actually open before client meetings.</p>
+        <ul class="tool-features">
+          <li class="tool-feat"><div class="feat-dot">✓</div><span>KPI cards: Total docs, pending reviews, overdue items, approval rate</span></li>
+          <li class="tool-feat"><div class="feat-dot">✓</div><span>Submission timeline with milestone overlay</span></li>
+          <li class="tool-feat"><div class="feat-dot">✓</div><span>Review duration heatmap — spot reviewer bottlenecks instantly</span></li>
+          <li class="tool-feat"><div class="feat-dot">✓</div><span>Multi-project support across all active developments</span></li>
+          <li class="tool-feat"><div class="feat-dot">✓</div><span>One-click refresh: paste Aconex export, charts update automatically</span></li>
+        </ul>
+        <div class="tool-impact">
+          <div class="impact-label">Business Impact</div>
+          <div class="impact-items">
+            <div class="impact-item">Gave management real-time document progress visibility</div>
+            <div class="impact-item">Reduced monthly reporting preparation from hours to minutes</div>
+            <div class="impact-item">Enabled data-driven escalation of overdue review items</div>
+          </div>
+        </div>
+        <a href="#contact" class="btn-primary">Request a Demo →</a>
+      </div>
+      <div class="tool-visual">
+        <div class="tv-inner">
+          <div class="tv-head">
+            <span class="tv-t">dashboard — REFAD PLACE</span>
+            <span class="tv-s">● LIVE</span>
+          </div>
+          <div class="tv-kpis">
+            <div class="tv-kpi"><div class="tv-kn">2,847</div><div class="tv-kl">Total Docs</div></div>
+            <div class="tv-kpi"><div class="tv-kn" style="color:var(--amber)">143</div><div class="tv-kl">Pending</div></div>
+            <div class="tv-kpi"><div class="tv-kn" style="color:var(--green)">94%</div><div class="tv-kl">Approved</div></div>
+          </div>
+          <div class="tv-row" style="margin-top:.3rem"><span class="tv-lbl">OVERDUE</span><span class="tv-val" style="color:var(--red)">12 items</span></div>
+          <div class="tv-row"><span class="tv-lbl">AVG REVIEW</span><span class="tv-val">4.2 days</span></div>
+          <div style="padding-top:.5rem;border-top:1px solid var(--border);margin-top:auto;">
+            <div style="font-family:var(--mono);font-size:.58rem;color:var(--text3);margin-bottom:.4rem">SUBMISSIONS BY MONTH</div>
+            <div class="tv-bars">
+              <div class="tv-bar"></div><div class="tv-bar"></div><div class="tv-bar"></div>
+              <div class="tv-bar"></div><div class="tv-bar"></div><div class="tv-bar"></div>
+              <div class="tv-bar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div>
+    <div class="section-label">// About</div>
+    <h2 class="section-title">I Fix Document Control<br>Problems That Cost<br>Projects Money</h2>
+    <div class="divider"></div>
+    <div class="about-text">
+      <p>I'm a <strong>Senior Document Controller with 6+ years</strong> of client-side experience on engineering and construction projects across KSA — managing environments that handle tens of thousands of active documents simultaneously.</p>
+      <p>What separates my work from standard DC practice: I <strong>build the tools myself</strong>. When a gap exists between what Aconex offers and what projects actually need, I close it with Python scripts, Excel automation, and custom workflows — then deploy them in production.</p>
+    </div>
+    <div class="about-vals">
+      <div class="about-val">
+        <div class="val-icon">⚡</div>
+        <div class="val-text">
+          <strong>Systems Over Procedures</strong>
+          <span>I build processes once, correctly — so teams don't reinvent them every project.</span>
+        </div>
+      </div>
+      <div class="about-val">
+        <div class="val-icon">🎯</div>
+        <div class="val-text">
+          <strong>Zero Rework Culture</strong>
+          <span>Validation upstream, not when an auditor finds issues at handover.</span>
+        </div>
+      </div>
+      <div class="about-val">
+        <div class="val-icon">🔬</div>
+        <div class="val-text">
+          <strong>Automation First</strong>
+          <span>If it's repetitive and a human is doing it, it should be a script.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="about-card">
+      <div style="display:flex;align-items:center;gap:1rem">
+        <div class="about-avatar">AH</div>
+        <div>
+          <div class="about-name">Ali Hassan</div>
+          <div class="about-role">Senior Document Controller · Aconex Specialist</div>
+        </div>
+      </div>
+      <div class="about-metrics">
+        <div class="about-metric"><div class="m-num">6+</div><div class="m-lbl">Years Experience</div></div>
+        <div class="about-metric"><div class="m-num">50k+</div><div class="m-lbl">Docs Managed</div></div>
+        <div class="about-metric"><div class="m-num">8</div><div class="m-lbl">Live Projects</div></div>
+        <div class="about-metric"><div class="m-num">2</div><div class="m-lbl">Tools Built</div></div>
+      </div>
+      <div>
+        <div style="font-family:var(--mono);font-size:.68rem;color:var(--text3);margin-bottom:.7rem;letter-spacing:.06em;text-transform:uppercase">Core Stack</div>
+        <div class="skills-wrap">
+          <span class="skill-pill hi">Aconex</span>
+          <span class="skill-pill hi">Python</span>
+          <span class="skill-pill hi">Excel / VBA</span>
+          <span class="skill-pill">Adobe / PDF</span>
+          <span class="skill-pill">ISO 19650</span>
+          <span class="skill-pill">Transmittals</span>
+          <span class="skill-pill">MDR Design</span>
+          <span class="skill-pill">Workflow Automation</span>
+          <span class="skill-pill">KPI Dashboards</span>
+          <span class="skill-pill">ERP Systems</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PORTFOLIO ══ -->
+<section id="portfolio">
+  <div class="section-label">// Portfolio</div>
+  <h2 class="section-title">Delivered Work,<br>Real Projects</h2>
+  <div class="divider"></div>
+  <p class="section-sub">Case studies and project examples from live engineering and construction engagements.</p>
+
+  <!-- FEATURED CASE STUDIES -->
+  <div class="case-cards">
+    <div class="case-card reveal">
+      <div class="case-head">
+        <span class="case-label">Case Study 01</span>
+        <span class="case-icon">🏷️</span>
+      </div>
+      <div class="case-body">
+        <div class="case-name">Metadata Automation — REFAD Projects</div>
+        <div class="case-row">
+          <span class="case-key">Problem</span>
+          <span class="case-val">Team spending 4–6 hours per batch manually filling metadata fields, causing repeated filename errors and rejected Aconex uploads.</span>
+        </div>
+        <div class="case-row">
+          <span class="case-key">Solution</span>
+          <span class="case-val">Built Python automation tool with project-configurable schemas, auto-generating filenames and validating all fields before upload.</span>
+        </div>
+        <div class="case-result-row">
+          <div class="case-result-label">Results</div>
+          <div class="case-result-item">Batch processing time cut by 90%</div>
+          <div class="case-result-item">Zero rejected submissions post-deployment</div>
+          <div class="case-result-item">Deployed across 8 active projects simultaneously</div>
+        </div>
+      </div>
+    </div>
+    <div class="case-card reveal">
+      <div class="case-head">
+        <span class="case-label">Case Study 02</span>
+        <span class="case-icon">📊</span>
+      </div>
+      <div class="case-body">
+        <div class="case-name">QC Dashboard — Live Project Visibility</div>
+        <div class="case-row">
+          <span class="case-key">Problem</span>
+          <span class="case-val">Management had no real-time visibility on document status. Monthly reports took hours to prepare and were outdated by the time they were shared.</span>
+        </div>
+        <div class="case-row">
+          <span class="case-key">Solution</span>
+          <span class="case-val">Built multi-tab Excel dashboard with MDR, DR Log, Submittal Log, and Revision tracking. One-click refresh from Aconex export data.</span>
+        </div>
+        <div class="case-result-row">
+          <div class="case-result-label">Results</div>
+          <div class="case-result-item">Reporting prep time: hours → under 5 minutes</div>
+          <div class="case-result-item">Real-time KPI visibility for all stakeholders</div>
+          <div class="case-result-item">Overdue reviews identified and escalated proactively</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PORTFOLIO GRID -->
+  <div class="portfolio-grid">
+    <div class="p-card reveal">
+      <div class="p-thumb"><div class="p-thumb-grid"></div><div class="p-thumb-icon">⚙️</div><span class="p-thumb-lbl">System Setup</span></div>
+      <div class="p-body">
+        <div class="p-tags"><span class="ptag c">Aconex</span><span class="ptag g">Workflow</span></div>
+        <div class="p-name">Aconex Full Setup — Compound P3</div>
+        <p class="p-desc">Complete Aconex configuration from scratch: numbering schema, review workflows, access matrix, transmittal templates, and full team onboarding.</p>
+      </div>
+    </div>
+    <div class="p-card reveal">
+      <div class="p-thumb"><div class="p-thumb-grid"></div><div class="p-thumb-icon">📋</div><span class="p-thumb-lbl">Stakeholder Mgmt</span></div>
+      <div class="p-body">
+        <div class="p-tags"><span class="ptag a">Excel</span><span class="ptag g">VBA</span></div>
+        <div class="p-name">Stakeholder Request Automation</div>
+        <p class="p-desc">Automated info-request system across 8 projects with Contractor, Consultant, and Designer tracking. Reduced coordination overhead significantly.</p>
+      </div>
+    </div>
+    <div class="p-card reveal">
+      <div class="p-thumb"><div class="p-thumb-grid"></div><div class="p-thumb-icon">🔁</div><span class="p-thumb-lbl">Process Design</span></div>
+      <div class="p-body">
+        <div class="p-tags"><span class="ptag c">Aconex</span><span class="ptag a">PDF</span></div>
+        <div class="p-name">Site Handover Document Workflow</div>
+        <p class="p-desc">Full transmittal workflow for site handover: signature routing, Aconex upload procedures, and audit trail. Zero manual steps after setup.</p>
+      </div>
+    </div>
+    <div class="p-card reveal">
+      <div class="p-thumb" style="background:linear-gradient(135deg,var(--bg4),var(--bg3));display:flex;align-items:center;justify-content:center;"><div class="p-thumb-grid"></div><div style="position:relative;text-align:center;"><div style="font-family:var(--mono);font-size:.72rem;color:var(--text3)">In Development</div><div style="font-size:1.4rem;margin-top:.2rem">🔧</div></div></div>
+      <div class="p-body">
+        <div class="p-tags"><span class="ptag">Python</span><span class="ptag">Desktop App</span></div>
+        <div class="p-name">DocRename Pro — Coming Soon</div>
+        <p class="p-desc">Standalone desktop app for batch renaming with ISO 19650 presets, Aconex naming conventions, conflict detection, and audit logging.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section id="testimonials">
+  <div class="section-label">// Project Feedback</div>
+  <div class="testi-header">
+    <div>
+      <h2 class="section-title">What Teams Say</h2>
+      <div class="divider"></div>
+    </div>
+    <span class="testi-note">Based on direct project feedback from colleagues and managers</span>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">The metadata automation saved our team enormous amounts of time. What used to be a tedious, error-prone process is now completely reliable — the tool just handles it.</p>
+      <div class="testi-author">
+        <div class="testi-av">PM</div>
+        <div>
+          <div class="testi-name">Project Manager</div>
+          <div class="testi-role">REFAD Development · KSA</div>
+          <span class="testi-source">Direct feedback</span>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">Ali set up our entire Aconex environment from scratch. Three weeks in, we had proper governance, clean workflows, and a team that finally understood how to use the system correctly.</p>
+      <div class="testi-author">
+        <div class="testi-av">DC</div>
+        <div>
+          <div class="testi-name">Document Control Lead</div>
+          <div class="testi-role">Engineering Firm · Saudi Arabia</div>
+          <span class="testi-source">Direct feedback</span>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">The dashboard gave us project visibility we simply didn't have before. We can walk into any client meeting with real numbers — submissions, overdue reviews, approval rates — all current.</p>
+      <div class="testi-author">
+        <div class="testi-av">QM</div>
+        <div>
+          <div class="testi-name">Quality Manager</div>
+          <div class="testi-role">Construction Group · GCC</div>
+          <span class="testi-source">Direct feedback</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<div id="cta-banner">
+  <div class="cta-glow"></div>
+  <div class="section-label">// Ready?</div>
+  <h2 class="cta-title">Let's Fix Your Document Control</h2>
+  <p class="cta-sub">Whether it's an Aconex setup, a metadata automation tool, or a full DC system — let's start with a free workflow review.</p>
+  <div class="cta-actions">
+    <a href="#contact" class="btn-primary">📅 Book Free Consultation</a>
+    <a href="#contact" class="btn-secondary">🔍 Request Aconex Audit</a>
+  </div>
+</div>
+
+<!-- ══ FAQ ══ -->
+<section id="faq">
+  <div class="section-label">// FAQ</div>
+  <h2 class="section-title" style="text-align:center">Common Questions</h2>
+  <div class="divider" style="margin:1rem auto 1.5rem"></div>
+  <div class="faq-wrap">
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">What does the free consultation include?<div class="faq-arr">▾</div></div>
+      <div class="faq-a">A 30-minute call where I review your current Aconex setup or document control workflow, identify the top 3 bottlenecks, and give you a clear picture of what's fixable and how long it would take. No pitch, no pressure — just an honest assessment.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">Do I need to give you access to my Aconex system?<div class="faq-arr">▾</div></div>
+      <div class="faq-a">For configuration and workflow work, yes — admin-level access scoped to your project. For tool deployments and dashboards, I can work entirely from your data exports without live system access. We'll agree on the right scope during the initial call.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">How long does a typical Aconex setup take?<div class="faq-arr">▾</div></div>
+      <div class="faq-a">A full configuration — numbering schema, workflows, access control, templates — typically takes 1–2 weeks depending on project complexity and stakeholder count. Focused scopes (workflow optimization, metadata tool deployment) can be completed in 3–5 days.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">Can your tools work with any Aconex project?<div class="faq-arr">▾</div></div>
+      <div class="faq-a">Yes. All tools are fully configurable — numbering schemas, field mappings, and naming conventions are project-specific inputs, not hard-coded. I configure the tool for your exact convention during deployment, and you'll be able to adjust it independently afterward.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">Do you offer ongoing support after delivery?<div class="faq-arr">▾</div></div>
+      <div class="faq-a">Yes. Most projects include a 30-day support window post-delivery. For teams managing live systems or using automation tools in production, I offer retainer arrangements for ongoing support, updates, and training.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">Are you available for short-term or phase-specific engagements?<div class="faq-arr">▾</div></div>
+      <div class="faq-a">Absolutely. I take both fixed-scope deliverable projects and time-based engagements for a specific project phase. Tell me your situation and we'll find the right structure — whether that's a 1-week tool deployment or a 3-month embedded DC role.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div>
+    <div class="section-label">// Get in Touch</div>
+    <h2 class="section-title">Let's Talk About<br>Your Project</h2>
+    <div class="divider"></div>
+
+    <!-- HOOK -->
+    <div class="contact-hook">
+      <strong>Not sure where your Aconex setup is failing?</strong>
+      Share your current workflow and I'll identify the bottlenecks within 24 hours — no commitment required.
+    </div>
+
+    <div class="contact-methods">
+      <div class="contact-method">
+        <div class="cm-ic">✉️</div>
+        <div><div class="cm-lbl">Email</div><div class="cm-val">your@email.com</div></div>
+      </div>
+      <div class="contact-method">
+        <div class="cm-ic">💼</div>
+        <div><div class="cm-lbl">LinkedIn</div><div class="cm-val">linkedin.com/in/your-profile</div></div>
+      </div>
+      <div class="contact-method">
+        <div class="cm-ic">📍</div>
+        <div><div class="cm-lbl">Location</div><div class="cm-val">Saudi Arabia · Available Remotely</div></div>
+      </div>
+      <div class="contact-method">
+        <div class="cm-ic">⚡</div>
+        <div><div class="cm-lbl">Response Time</div><div class="cm-val">Within 24 hours</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-form">
+    <div class="form-title">Send a Project Brief</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-input" placeholder="Your name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Company</label>
+        <input type="text" class="form-input" placeholder="Your company">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-input" placeholder="your@email.com">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Service Needed</label>
+      <select class="form-select">
+        <option value="">Select a service...</option>
+        <option>Aconex Setup & Configuration</option>
+        <option>Workflow Design & Optimization</option>
+        <option>Metadata & Document Automation</option>
+        <option>Dashboard & Reporting</option>
+        <option>Document Control System Setup</option>
+        <option>Freelance Document Controller</option>
+        <option>Free Consultation / Aconex Audit</option>
+        <option>Tool Demo Request</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Project Brief</label>
+      <textarea class="form-textarea" placeholder="Describe your project, the problem you're facing, and relevant details (team size, project type, timeline, number of documents)..."></textarea>
+    </div>
+    <button class="form-submit" onclick="handleSubmit(this)">Send Brief →</button>
+    <p class="form-note">⚡ Response within 24 hours · Free initial consultation</p>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="f-logo">Ali<span>.</span>Hassan</div>
+  <p class="f-copy">© 2026 Ali Hassan · Senior Document Controller · Aconex Specialist · KSA</p>
+  <div class="f-links">
+    <a href="#why">Why Me</a>
+    <a href="#services">Services</a>
+    <a href="#tools">Tools</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+/* ── Theme ── */
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  localStorage.setItem('theme', isDark ? 'light' : 'dark');
+}
+// Load saved theme
+(function() {
+  const saved = localStorage.getItem('theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+
+/* ── Nav ── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 20);
+}, { passive: true });
+
+/* ── Mobile Menu ── */
+function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+function closeMenu()  { document.getElementById('mobileMenu').classList.remove('open'); }
+document.addEventListener('click', e => {
+  const m = document.getElementById('mobileMenu');
+  if (m.classList.contains('open') && !m.contains(e.target) && !e.target.closest('.hamburger')) closeMenu();
+});
+
+/* ── Scroll Reveal ── */
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), 80);
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.style.transitionDelay = (i % 3) * 0.1 + 's';
+  revealObs.observe(el);
+});
+
+/* ── Active Nav ── */
+const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  document.querySelectorAll('section[id]').forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+  });
+}, { passive: true });
+
+/* ── FAQ ── */
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+/* ── Form Submit ── */
+function handleSubmit(btn) {
+  const fields = btn.closest('.contact-form').querySelectorAll('.form-input, .form-select, .form-textarea');
+  let valid = true;
+  fields.forEach(f => { if (!f.value.trim()) { f.style.borderColor = 'var(--red)'; valid = false; } else { f.style.borderColor = ''; } });
+  if (!valid) return;
+  const orig = btn.textContent;
+  btn.textContent = '✓ Brief received! I\'ll respond within 24 hours.';
+  btn.style.background = 'var(--green)';
+  btn.disabled = true;
+  setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.disabled = false; }, 5000);
+}
+
+/* Language Switch */
+const AR = {
+  navLinks: ['لماذا أنا','الخدمات','الأدوات','المشاريع','الآراء','تواصل'],
+  navCta: 'احجز استشارة مجانية ←',
+  heroBadge: 'متاح للعمل الحر — المملكة العربية السعودية وعن بُعد',
+  heroH1: 'أصلح إعداد Aconex،<br>أزل أخطاء الوثائق<br>وسرّع دورة المراجعة<br>بمعدل <span class="accent">3×</span><span class="accent2">.</span>',
+  heroSub: 'أصمّم وأضبط وأؤتمت بيئات Aconex لمشاريع الهندسة والإنشاء — بأدوات مخصصة تحوّل ضبط الوثائق من عائق إلى ميزة تنافسية.',
+  heroCred: 'موثوق به في مشاريع جانب العميل لإدارة <strong>أكثر من 50,000 وثيقة</strong> عبر مشاريع نشطة في المملكة',
+  btnConsult: '📅 احجز استشارة مجانية',
+  btnAudit: '🔍 طلب مراجعة Aconex',
+  btnTools: '🔧 عرض الأدوات',
+  stats: ['سنوات خبرة','وثيقة مُدارة','مشاريع نشطة','مراجعة أسرع'],
+  trustLbl: 'مجالات الخبرة',
+  whyLabel: '// لماذا تعمل معي',
+  whyTitle: 'ما الذي يجعل هذا مختلفاً',
+  whySub: 'معظم متحكمي الوثائق يديرون الملفات فقط. أنا أبني الأنظمة والأدوات وسير العمل التي تجعل ضبط الوثائق سلساً دائماً.',
+  servLabel: '// الخدمات',
+  servTitle: 'حلول مستهدفة لعوائق Document Control الحقيقية',
+  contactHookT: 'لست متأكداً أين يفشل إعداد Aconex لديك؟',
+  contactHookB: ' شارك سير عملك الحالي وسأحدد نقاط الاختناق خلال 24 ساعة — دون أي التزام.',
+  footerCopy: '© 2026 علي حسن · مدير وثائق أول · متخصص Aconex · المملكة العربية السعودية',
+};
+const EN = {
+  navLinks: ['Why Me','Services','Tools','Portfolio','Feedback','Contact'],
+  navCta: 'Book Free Consultation →',
+  heroBadge: 'Available for Freelance — KSA & Remote',
+  heroH1: 'Fix Your Aconex Setup,<br>Eliminate Document<br>Errors &amp; Speed Up<br>Reviews by <span class="accent">3×</span><span class="accent2">.</span>',
+  heroSub: 'I design, configure, and automate Aconex environments for engineering and construction projects — with custom-built tools that turn document control from a bottleneck into a competitive advantage.',
+  heroCred: 'Trusted on client-side projects managing <strong>50,000+ documents</strong> across multiple active developments in KSA',
+  btnConsult: '📅 Book Free Consultation',
+  btnAudit: '🔍 Request Aconex Audit',
+  btnTools: '🔧 View Tools',
+  stats: ['Years in DC','Docs Managed','Active Projects','Faster Reviews'],
+  trustLbl: 'Expertise In',
+  whyLabel: '// Why Work With Me',
+  whyTitle: 'What Makes This Different',
+  whySub: 'Most document controllers manage files. I build the systems, tools, and workflows that make document control invisible to everyone — except when they need it most.',
+  servLabel: '// Services',
+  servTitle: 'Targeted Solutions for Real DC Bottlenecks',
+  contactHookT: 'Not sure where your Aconex setup is failing?',
+  contactHookB: " Share your current workflow and I'll identify the bottlenecks within 24 hours — no commitment required.",
+  footerCopy: '© 2026 Ali Hassan · Senior Document Controller · Aconex Specialist · KSA',
+};
+
+function setLang(lang) {
+  document.documentElement.lang = lang;
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-ar').classList.toggle('active', lang === 'ar');
+  localStorage.setItem('lang', lang);
+  const T = lang === 'ar' ? AR : EN;
+
+  // Nav
+  document.querySelectorAll('.nav-links a:not(.nav-cta)').forEach((a,i)=>{ if(T.navLinks[i]) a.textContent = T.navLinks[i]; });
+  document.querySelectorAll('.nav-cta').forEach(el => el.textContent = T.navCta);
+  document.querySelectorAll('.mobile-menu a:not(:last-child)').forEach((a,i)=>{ if(i<6 && T.navLinks[i]) a.textContent = T.navLinks[i]; });
+  const mCta = document.querySelector('.mobile-menu a:last-child');
+  if(mCta) mCta.textContent = T.navCta;
+
+  // Hero
+  const badge = document.querySelector('.hero-badge');
+  if(badge) badge.innerHTML = '<div class="badge-pulse"></div>' + T.heroBadge;
+  const h1 = document.querySelector('.hero-h1');
+  if(h1) h1.innerHTML = T.heroH1;
+  const sub = document.querySelector('.hero-sub');
+  if(sub) sub.textContent = T.heroSub;
+  const cred = document.querySelector('.hero-cred span');
+  if(cred) cred.innerHTML = T.heroCred;
+
+  // Hero buttons
+  const hBtns = document.querySelectorAll('.hero-actions a');
+  if(hBtns[0]) hBtns[0].textContent = T.btnConsult;
+  if(hBtns[1]) hBtns[1].textContent = T.btnAudit;
+  if(hBtns[2]) hBtns[2].textContent = T.btnTools;
+
+  // Stats
+  document.querySelectorAll('.stat-lbl').forEach((el,i)=>{ if(T.stats[i]) el.textContent = T.stats[i]; });
+
+  // Trust
+  const tl = document.querySelector('.trust-lbl');
+  if(tl) tl.textContent = T.trustLbl;
+
+  // Why
+  const wl = document.querySelector('#why .section-label');
+  if(wl) wl.textContent = T.whyLabel;
+  const wt = document.querySelector('#why .section-title');
+  if(wt) wt.textContent = T.whyTitle;
+  const ws = document.querySelector('#why .section-sub');
+  if(ws) ws.textContent = T.whySub;
+
+  // Services
+  const sl = document.querySelector('#services .section-label');
+  if(sl) sl.textContent = T.servLabel;
+  const st = document.querySelector('#services .section-title');
+  if(st) st.textContent = T.servTitle;
+
+  // Contact hook
+  const chStrong = document.querySelector('.contact-hook strong');
+  if(chStrong) chStrong.textContent = T.contactHookT;
+  const ch = document.querySelector('.contact-hook');
+  if(ch) {
+    ch.childNodes.forEach(n => { if(n.nodeType === 3 && n.textContent.trim()) n.textContent = T.contactHookB; });
+  }
+
+  // Footer
+  const fc = document.querySelector('.f-copy');
+  if(fc) fc.textContent = T.footerCopy;
+
+  // Arabic font
+  if(lang === 'ar') {
+    let link = document.getElementById('arabic-font');
+    if(!link) {
+      link = document.createElement('link');
+      link.id = 'arabic-font';
+      link.rel = 'stylesheet';
+      link.href = 'https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap';
+      document.head.appendChild(link);
+    }
+    document.body.style.fontFamily = "Cairo, 'DM Sans', sans-serif";
+  } else {
+    document.body.style.fontFamily = '';
+  }
+}
+
+(function(){
+  const saved = localStorage.getItem('lang');
+  if(saved && saved !== 'en') setLang(saved);
+})();
+
+</script>
+</body>
+</html>
